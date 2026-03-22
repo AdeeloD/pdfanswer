@@ -21,7 +21,7 @@ PDFanswer is an AI-powered document assistant that lets you upload any PDF and a
 ```
 PDF Upload → Text Extraction (PyMuPDF + Tesseract OCR)
           → Chunking (RecursiveCharacterTextSplitter)
-          → Embedding (all-MiniLM-L6-v2 via sentence-transformers)
+          → Embedding (FastEmbed BAAI/bge-small-en-v1.5)
           → FAISS Vector Index
           → Semantic Search (top 3 relevant chunks)
           → LLM Answer Generation (Llama 3.3 70B / Groq)
@@ -35,11 +35,11 @@ PDF Upload → Text Extraction (PyMuPDF + Tesseract OCR)
 |---|---|
 | UI | Streamlit |
 | Orchestration | LangChain |
-| Embeddings | sentence-transformers (all-MiniLM-L6-v2) |
+| Embeddings | FastEmbed (BAAI/bge-small-en-v1.5) |
 | Vector Store | FAISS (in-memory) |
 | OCR | Tesseract + pdf2image |
 | LLM | Llama 3.3 70B via Groq API |
-| Deployment | Docker + AWS EC2 |
+| Deployment | Docker + Railway |
 
 ---
 
@@ -47,7 +47,7 @@ PDF Upload → Text Extraction (PyMuPDF + Tesseract OCR)
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/pdfanswer.git
+git clone https://github.com/AdeeloD/pdfanswer.git
 cd pdfanswer
 ```
 

@@ -3,7 +3,7 @@ import pytesseract
 from pdf2image import convert_from_bytes
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import FastEmbedEmbeddings
 
 
 def extract_text_from_pdf(pdf_bytes: bytes) -> str:
@@ -36,8 +36,5 @@ def load_and_split_pdf(pdf_bytes: bytes) -> list[str]:
 
 
 def build_faiss_index(chunks: list[str]) -> FAISS:
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2",
-        model_kwargs={"device": "cpu"},
-    )
+    embeddings = FastEmbedEmbeddings(model_name="BAAI/bge-small-en-v1.5")
     return FAISS.from_texts(chunks, embeddings)
